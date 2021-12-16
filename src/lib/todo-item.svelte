@@ -1,3 +1,8 @@
+<script lang="ts">
+  export let todo: Todo;
+  /* const done = todo.done; */ // can also do this
+</script>
+
 <style>
   .todo {
     display: grid;
@@ -65,7 +70,7 @@
     opacity: 1;
   }
 
-  /* TODO: Uncomment whenn the API endpoints are available
+  /* TODO: Uncomment whenn the API endpoints are available */
   .done {
     transform: none;
     opacity: .5;
@@ -74,25 +79,23 @@
   
   .done .toggle {
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='16' viewBox='0 0 22 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 1.5L7.4375 14.5L1.5 8.5909' stroke='%23676778' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  } 
-  */
+  }
 
 </style>
 
-<!-- dynamic class called done -->
-<!-- <div class="todo done"> -->
-<div class="todo">
-  <form action="" method="">
-    <input type="hidden" name="done" value="" />
-    <button class="toggle" aria-label="Mark done/not done"></button>
+<!-- dynamic class attribute called done, to add conditionally -->
+<div class="todo" class:done={todo.done}>
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post">
+    <input type="hidden" name="done" value="{todo.done ? '' : 'true'}" />
+    <button class="toggle" aria-label="Mark todo as {todo.done ? 'not done' : 'done'}"></button>
   </form>
 
-  <form action="" method="" class="text">
-    <input type="text" value="">
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text">
+    <input type="text" name="editedText" value="{todo.text}">
     <button aria-label="Save todo" class='save'></button>
   </form>
 
-  <form action="" method="">
+  <form action="/todos/{todo.uid}.json?_method=delete" method="post">
     <button aria-label="Delete todo" class='delete'></button>
   </form>
 </div>

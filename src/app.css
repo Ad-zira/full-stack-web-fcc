@@ -1,8 +1,9 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
   --primary-color: #b9c6d2; 
-  --secondary-color: #d9cde9;
+  --secondary-color: #e4d2fa;
   --tertiary-color: #edf0f8;
+  --additional-color: whitesmoke;
 }
 
 body {
@@ -11,7 +12,7 @@ body {
     180deg, 
     var(--primary-color),
     var(--secondary-color),
-    var(--tertiary-color),
+    var(--tertiary-color)
   );
   min-height: 100vh;
   margin: 0;
