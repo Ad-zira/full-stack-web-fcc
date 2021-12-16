@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { enhance } from "$lib/actions/form";
   export let todo: Todo;
-  /* const done = todo.done; */ // can also do this
+  export let processDeletedTodoResult: (res: Response) => void;
+  export let processUpdatedTodoResult: (res: Response) => void;
 </script>
 
 <style>
@@ -85,17 +87,23 @@
 
 <!-- dynamic class attribute called done, to add conditionally -->
 <div class="todo" class:done={todo.done}>
-  <form action="/todos/{todo.uid}.json?_method=patch" method="post">
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" use:enhance={{
+    result: processUpdatedTodoResult
+  }}>
     <input type="hidden" name="done" value="{todo.done ? '' : 'true'}" />
     <button class="toggle" aria-label="Mark todo as {todo.done ? 'not done' : 'done'}"></button>
   </form>
 
-  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text">
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text" use:enhance={{
+    result: processUpdatedTodoResult
+  }}>
     <input type="text" name="editedText" value="{todo.text}">
     <button aria-label="Save todo" class='save'></button>
   </form>
 
-  <form action="/todos/{todo.uid}.json?_method=delete" method="post">
+  <form action="/todos/{todo.uid}.json?_method=delete" method="post" use:enhance={{
+    result: processDeletedTodoResult
+  }}>
     <button aria-label="Delete todo" class='delete'></button>
   </form>
 </div>
