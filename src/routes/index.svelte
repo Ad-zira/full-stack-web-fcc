@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type {Load} from "@sveltejs/kit"
-  export const load:Load = async ({ fetch }) => {
-    const res = await fetch("/todos.joson");
+  export const load: Load = async ({ fetch }) => {
+    const res = await fetch("/todos.json");
 
     if (res.ok) {
       const todos = await res.json();

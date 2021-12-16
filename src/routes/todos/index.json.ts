@@ -1,27 +1,16 @@
 import type { RequestHandler } from "@sveltejs/kit"
+import { api } from "./_api"
 
-let todos: Todo[] = [];
-
-export const get: RequestHandler = () => {
-  return {
-    status: 200,
-    body: todos
-  }
+export const get: RequestHandler = (req) => {
+  return api(req)
 }
 
 export const post: RequestHandler<{}, FormData> = (req) => {
-  todos.push({
+  return api(req, {
+    uid: `${Date.now()}`, // Todo: Replace with the UID from the database
     created_at: new Date(),
     text: req.body.get('text'),
     done: false
-  });
-  console.log(req.body.get("text"));
-
-  return {
-    status: 303,
-    headers: {
-      location: '/'
-    }
-  }
+  })
 }
 
