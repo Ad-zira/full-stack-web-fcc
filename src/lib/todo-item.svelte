@@ -91,8 +91,8 @@
     <button class="toggle" aria-label="Mark done/not done"></button>
   </form>
 
-  <form action="" method="" class="text">
-    <input type="text" name="text" value="{todo.text}">
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text">
+    <input type="text" name="editedText" value="{todo.text}">
     <button aria-label="Save todo" class='save'></button>
   </form>
 

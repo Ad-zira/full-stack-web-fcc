@@ -4,3 +4,9 @@ import { api } from "./_api"
 export const del: RequestHandler = (req) => {
   return api(req)
 }
+
+export const patch: RequestHandler<{}, FormData> = (req) => {
+  return api(req, {
+    text: req.body.get('editedText')
+  })
+}
