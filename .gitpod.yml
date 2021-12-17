@@ -1,6 +1,6 @@
 ---
 # For more details, please visit https://www.github.io/docs/references/gitpod-yml
-image: gitpod/workspace-postgres #1
+image: gitpod/workspace-postgres
 
 tasks:
   - init: npm install
@@ -9,10 +9,10 @@ tasks:
       echo "Starting Dev Server..."
       npm run dev
     env:
-      DATABASE_URL: postgres://gitpod@localhost/todos
+      DATABASE_URL: postgresql://gitpod@localhost/todos
   - command: npx prisma studio
     env:
-      DATABASE_URL: postgres://gitpod@localhost/todos
+      DATABASE_URL: postgresql://gitpod@localhost/todos
 
 ports:
   - port: 3000
